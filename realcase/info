@@ -1,0 +1,141 @@
+package info;
+import java.awt.Font;
+import static java.awt.SystemColor.info;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+public class MyFrame extends JFrame implements ActionListener {
+
+    
+ JButton backB,nextB;
+  JTextField field1,field2,field3;
+  MyFrame(){
+  
+   backB = new JButton("<<back");
+        backB.setBounds(200,320,80,20);
+        
+          
+         nextB = new JButton("next>>");
+        nextB.setBounds(280,320,80,20);
+        nextB.addActionListener(this);
+        
+        
+        
+        
+        
+        ImageIcon image = new ImageIcon("ss.png");
+        JLabel icon = new JLabel();
+        icon.setIcon(image);
+        icon.setBounds(140, 0,100, 100);
+        
+        JLabel label1 = new JLabel("NAME:");
+        label1.setBounds(40, 150, 100, 30);
+        label1.setFont(new Font("Comic Sans",Font.BOLD,15));
+        
+         field1 = new JTextField("NAME");
+        field1.setBounds(150,150,200,30);
+        field1.setFont(new Font("Comic Sans",Font.BOLD,10));
+        
+        JLabel label2 = new JLabel("AGE:");
+        label2.setBounds(40, 200, 100, 30);
+        label2.setFont(new Font("Comic Sans",Font.BOLD,15));
+        
+          field2 = new JTextField("AGE");
+        field2.setBounds(150,200,200,30);
+         field2.setFont(new Font("Comic Sans",Font.BOLD,10));
+        
+        
+        JLabel label3 = new JLabel("STUDENT ID:");
+        label3.setBounds(40, 250, 100, 30);
+        label3.setFont(new Font("Comic Sans",Font.BOLD,15));
+        
+        
+          field3 = new JTextField("STUDENT ID");
+        field3.setBounds(150,250,200,30);
+         field3.setFont(new Font("Comic Sans",Font.BOLD,10));
+        
+        
+        
+  
+  
+  
+  
+  
+  
+   
+        this.setLayout(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(400,400);
+        this.setVisible(true);
+        
+        this.add(icon);
+        this.add(label1);
+        this.add(field1);
+        this.add(label2);
+     this.add(field2);
+      this.add(label3);
+       this.add(field3);
+       this.add(backB);
+      this.add(nextB);
+        this.setResizable(false);
+  
+  }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==nextB){
+        
+        try{
+        if(field1.getText().matches(".*\\d.*")){
+        throw new NumberFormatException();
+        }
+        
+        }catch(NumberFormatException ex){
+                JOptionPane.showMessageDialog(null,"IVALID NAME");
+                }
+        try {
+            
+            
+    int age = Integer.parseInt(field2.getText());
+    
+    if(age<18){
+     JOptionPane.showMessageDialog(null, "MINOR");
+    }
+   
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(null, "INVALID AGE");
+}
+        
+         try {
+    int Snum = Integer.parseInt(field3.getText());
+    
+    if (Snum != 10){
+    JOptionPane.showMessageDialog(null, "INVALID STUDENT ID");
+    }
+ 
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(null, "INVALID STUDENT ID");
+}
+        
+        }
+    }
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+}
+    
+    
+    
+
