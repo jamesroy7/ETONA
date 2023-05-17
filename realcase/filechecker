@@ -1,0 +1,42 @@
+package reader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Scanner;
+
+public class Reader {
+
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        String FilePath = "student_info.txt";
+        boolean isPresent= false;
+         String searchTerm = "jam,bsit";
+        
+      /*  File file = new File("student_info.txt");
+        
+        Scanner sc = new Scanner(file);
+        
+        while(sc.hasNextLine()){
+        String line = sc.nextLine();
+        System.out.println(line);
+        }*/
+         try {
+            Path path = Paths.get(FilePath);
+            List<String> lines = Files.readAllLines(path);
+
+            for (String line : lines) {
+                if (line.contains(searchTerm)) {
+                    isPresent = true;
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(isPresent);
+     
+    }
+    
+}
