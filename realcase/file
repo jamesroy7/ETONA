@@ -1,0 +1,85 @@
+
+package layered;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.FileWriter;
+import java.io.IOException;
+public class MyFrame extends JFrame implements ActionListener{
+    
+    JTextField nameF;
+    JButton okB;
+    MyFrame(){
+        
+        okB = new JButton("ok");
+        okB.setBounds(100, 300, 50, 50);
+        okB.addActionListener(this);
+        
+        
+         nameF = new JTextField("NAME");
+        nameF.setBounds(150, 100, 250, 30);
+        nameF.setFont(new Font("Comic Sans",Font.BOLD,30));
+        
+        JLabel namelbl = new JLabel("NAME:");
+        namelbl.setBounds(30, 100, 100, 30);
+        namelbl.setFont(new Font("Comic Sans",Font.BOLD,30));
+        
+        
+        
+        
+        
+        ImageIcon image = new ImageIcon("tsu.png");
+        JLabel label1 = new JLabel(image);
+        label1.setOpaque(true);
+        label1.setBounds(0, 0, 500, 500);
+        
+        
+        
+        JLayeredPane pane = new JLayeredPane();
+        pane.setBounds(0, 0, 500, 500);
+        pane.add(label1,Integer.valueOf(0));
+        pane.add(namelbl,Integer.valueOf(1));
+        pane.add(nameF,Integer.valueOf(1));
+        pane.add(okB,Integer.valueOf(1));
+        
+     this.add(pane);
+    this.setSize(500,500);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setVisible(true);
+    this.setResizable(false);
+   
+    
+    
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==okB){
+            
+            String input =nameF.getText();
+        
+            try {
+                FileWriter writer = new FileWriter("studname.text",true);
+                
+                writer.write(input + "\n");
+                
+                writer.close();
+                System.out.println("entered succesfully");
+                
+               
+            } catch (IOException ec) {
+                 System.out.println("entered succesfully");
+                  ec.printStackTrace();
+            }
+         
+        
+        
+        
+        }
+           else{
+                    System.out.println("an error occured");
+                    }
+    }
+    
+}
